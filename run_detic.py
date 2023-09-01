@@ -27,9 +27,10 @@ def run_video(model, video_path, ann_path, dataset_path, skip=0, limit=None):
 
 
 @torch.no_grad()
-def main(*files, out_dir='/datasets/Milly/detic', vocab='lvis', overwrite=False, **kw):
+def main(*files, out_dir='./datasets/Milly/detic', vocab='lvis', vocab_name=None, overwrite=False, **kw):
     model = Detic(vocab, masks=True)
-    out_dir = f'{out_dir}-{vocab}'
+    vocab_name = vocab_name or vocab
+    out_dir = f'{out_dir}-{vocab_name}'
     if ',' in vocab:
         vocab = vocab.split(',')
 

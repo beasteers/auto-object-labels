@@ -23,7 +23,7 @@ def run_video(video_path, ann_path, vocab='lvis'):
     return { "data": video_path, "labels": ann_path }
 
 
-def main(*files, out_dir='detic_dataset'):
+def main(*files, out_dir='./datasets/Milly/detic'):
     label_dir = os.path.join(out_dir, 'labels')
 
     index = []

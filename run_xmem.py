@@ -52,15 +52,17 @@ def run_video(model, video_path, src_path, ann_path, dataset_path):
                 objs.append(eta.object(tid, label, bbox, mask, 1))
 
             eta.add_frame(anns, i, objs)
+    except Exception:
+        import traceback
+        traceback.print_exc()
     finally:
-
         eta.save(anns, ann_path)
-
         return { "data": os.path.relpath(video_path, dataset_path), "labels": os.path.relpath(ann_path, dataset_path) }
 
 
 @torch.no_grad()
-def main(*files, src_dir='detic_dataset', out_dir='xmem_dataset'):
+def main(*files, src_dir='./datasets/Milly/detic', out_dir='./datasets/Milly/xmem'):
+    assert files
     model = XMem({}).eval().to(device)
 
     index = []
